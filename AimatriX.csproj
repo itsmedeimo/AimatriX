@@ -6,7 +6,12 @@
     <UseWindowsForms>true</UseWindowsForms>
     <RootNamespace>AimatriX</RootNamespace>
     <AssemblyName>AimatriX</AssemblyName>
+    <ApplicationIcon>Resources\aimatrix.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\aimatrix.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <None Update="Resources\\crosshair.png">
