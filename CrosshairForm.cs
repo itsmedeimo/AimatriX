@@ -10,6 +10,7 @@ namespace AimatriX
     {
         private Bitmap currentImage;
         private TrayIconManager trayIconManager;
+        private Settings appSettings;
 
         public CrosshairForm()
         {
@@ -18,9 +19,10 @@ namespace AimatriX
             TopMost = true;
             StartPosition = FormStartPosition.Manual;
 
-            UpdateCrosshairImage("Resources/crosshair.png");
+            appSettings = Settings.Load();
+            UpdateCrosshairImage(appSettings.SelectedCrosshair);
 
-            trayIconManager = new TrayIconManager(this);
+            trayIconManager = new TrayIconManager(this, appSettings);
         }
 
         public void UpdateCrosshairImage(string imagePath)

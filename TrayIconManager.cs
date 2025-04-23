@@ -1,5 +1,4 @@
 using System;
-using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
@@ -7,59 +6,50 @@ namespace AimatriX
 {
     public class TrayIconManager : IDisposable
     {
-        private NotifyIcon trayIcon;
-        private CrosshairForm crosshairForm;
+        private readonly NotifyIcon trayIcon;
+        private readonly CrosshairForm crosshairForm;
+        private readonly Settings settings;
 
-        public TrayIconManager(CrosshairForm form)
+        public TrayIconManager(CrosshairForm form, Settings appSettings)
         {
             crosshairForm = form;
+            settings = appSettings;
 
-            trayIcon = new NotifyIcon();
-            trayIcon.Icon = new Icon("Resources/aimatrix.ico");
-            trayIcon.Visible = true;
+            trayIcon = new NotifyIcon
+            {
+                Icon = new System.Drawing.Icon("Resources/aimatrix.ico"),
+                Visible = true,
+                Text = "AimatriX"
+            };
 
             var contextMenu = new ContextMenuStrip();
-            contextMenu.Items.Add("Select Crosshair", null, SelectCrosshair);
-            contextMenu.Items.Add("Center Crosshair", null, CenterCrosshair);
-            contextMenu.Items.Add("Exit", null, Exit);
+            contextMenu.Items.Add("Center Crosshair", null, (s, e) => crosshairForm.CenterCrosshair());
+            contextMenu.Items.Add("Select Crosshair", null, (s, e) => SelectCrosshairFromFile());
+//            contextMenu.Items.Add("Choose From Library", null, (s, e) => ShowGallery());
+            contextMenu.Items.Add(new ToolStripSeparator());
+            contextMenu.Items.Add("Exit", null, (s, e) => Application.Exit());
 
             trayIcon.ContextMenuStrip = contextMenu;
         }
 
-        private void SelectCrosshair(object sender, EventArgs e)
+        private void SelectCrosshairFromFile()
         {
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            using (var ofd = new OpenFileDialog())
             {
-                openFileDialog.Filter = "PNG files (*.png)|*.png";
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                ofd.Filter = "PNG Files (*.png)|*.png";
+                if (ofd.ShowDialog() == DialogResult.OK)
                 {
-                    string selectedFile = openFileDialog.FileName;
-                    if (File.Exists(selectedFile))
-                    {
-                        crosshairForm.UpdateCrosshairImage(selectedFile);
-                    }
+                    settings.SelectedCrosshair = ofd.FileName;
+                    settings.Save();
+                    crosshairForm.UpdateCrosshairImage(ofd.FileName);
                 }
             }
         }
 
-        private void CenterCrosshair(object sender, EventArgs e)
-        {
-            crosshairForm.CenterCrosshair();
-        }
-
-        private void Exit(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
 
         public void Dispose()
         {
-            if (trayIcon != null)
-            {
-                trayIcon.Visible = false;
-                trayIcon.Dispose();
-                trayIcon = null;
-            }
+            trayIcon?.Dispose();
         }
     }
 }
