@@ -13,9 +13,9 @@ Whether you're playing a first-person shooter, lining up a trickshot, or just ne
 - Crosshair Gallery
 - Crosshair Control (Custom Size, Custom Opacity etc)
 
-## Download
+## 🌐 Download
 [Releases](https://github.com/itsmedeimo/AimatriX/releases)
 
-## Join Our Discord
+## 👌 Join Our Discord
 Join our Discord to get access to the latest news and updates and also our own custom crosshair gallery and also user submitted ones.
 [Join Our Discord](https://discord.gg/nNpy2PjYC6)
