@@ -1,4 +1,4 @@
-![[Resources/aimatrix_logo_clear.png]]
+![AimatriX](Resources/aimatrix_logo_clear.png)
 ## 🎯 About AimatriX
 **AimatriX** is a lightweight, customizable crosshair overlay designed for gamers, streamers, and creators who want precision without compromise.
 
