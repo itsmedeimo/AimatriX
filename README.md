@@ -12,7 +12,6 @@ Whether you're playing a first-person shooter, lining up a trickshot, or just ne
 ## ✨ Upcoming Features
 - Crosshair Gallery
 - Crosshair Control (Custom Size, Custom Opacity etc)
-- 
 
 ## Download
 [Releases](https://github.com/itsmedeimo/AimatriX/releases)
