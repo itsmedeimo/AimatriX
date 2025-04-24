@@ -4,10 +4,7 @@ using System.Windows.Forms;
 
 public class SplashForm : Form
 {
-    private Label appNameLabel;
     private Label versionLabel;
-    private Label taglineLabel;
-    private Label loadingLabel;
 
     public SplashForm()
     {
