@@ -1,7 +1,8 @@
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 ![AimatriX](Images/aimatrix_logo_clear.png)
 # AimatriX
 
-[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/itsmedeimo)[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/itsmedeimo)
 
 **AimatriX** is a lightweight, customizable crosshair overlay designed for gamers, streamers, and developers seeking precision without compromise. Whether you're playing a first-person shooter, lining up a trickshot, or just need a consistent visual guide, AimatriX provides a clean, always-on-top crosshair that works with any game — no mods, no overlays, no nonsense.
 
