@@ -1,6 +1,7 @@
 using System;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
@@ -20,9 +21,25 @@ namespace AimatriX
             StartPosition = FormStartPosition.Manual;
 
             appSettings = Settings.Load();
-            UpdateCrosshairImage(appSettings.SelectedCrosshair);
+
+            string imagePath = ResolveSelectedCrosshairPath(appSettings.SelectedCrosshair);
+            if (File.Exists(imagePath))
+            {
+                UpdateCrosshairImage(imagePath);
+            }
 
             trayIconManager = new TrayIconManager(this, appSettings);
+        }
+
+        private string ResolveSelectedCrosshairPath(string selectedCrosshair)
+        {
+            // Check full path first (backward compatibility)
+            if (File.Exists(selectedCrosshair))
+                return selectedCrosshair;
+
+            // Fallback to gallery path if setting is only a name
+            string galleryPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "CrosshairGallery", selectedCrosshair + ".png");
+            return galleryPath;
         }
 
         public void UpdateCrosshairImage(string imagePath)
@@ -95,8 +112,10 @@ namespace AimatriX
     {
         [StructLayout(LayoutKind.Sequential)]
         public struct POINT { public int x; public int y; }
+
         [StructLayout(LayoutKind.Sequential)]
         public struct SIZE { public int cx; public int cy; }
+
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
         public struct BLENDFUNCTION
         {

@@ -22,7 +22,10 @@ namespace AimatriX
                     return JsonSerializer.Deserialize<Settings>(json);
                 }
             }
-            catch { }
+            catch
+            {
+                // You could log the error here if needed
+            }
 
             return new Settings(); // fallback to default
         }
@@ -38,9 +41,9 @@ namespace AimatriX
                 string json = JsonSerializer.Serialize(this, new JsonSerializerOptions { WriteIndented = true });
                 File.WriteAllText(ConfigPath, json);
             }
-            catch (Exception ex)
+            catch
             {
-                // Optional: log or show error saving settings
+                // You could log the error here if needed
             }
         }
     }
